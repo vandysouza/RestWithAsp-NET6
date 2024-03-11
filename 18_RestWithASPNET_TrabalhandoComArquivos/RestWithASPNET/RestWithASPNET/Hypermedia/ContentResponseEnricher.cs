@@ -22,7 +22,7 @@ namespace RestWithASPNETUdemy.Hypermedia
 
         bool IResponseEnricher.CanEnrich(ResultExecutingContext response)
         {
-            if (response.Result is OkObjectResult okObjectResult)
+            if (response.Result is OkObjectResult okObjectResult && okObjectResult.Value != null)
             {
                 return CanEnrich(okObjectResult.Value.GetType());
             }
@@ -33,7 +33,7 @@ namespace RestWithASPNETUdemy.Hypermedia
             var urlHelper = new UrlHelperFactory().GetUrlHelper(response);
             if (response.Result is OkObjectResult okObjectResult)
             {
-                if (okObjectResult.Value is T model)
+                if (okObjectResult.Value is T model && model != null)
                 {
                     await EnrichModel(model, urlHelper);
                 }

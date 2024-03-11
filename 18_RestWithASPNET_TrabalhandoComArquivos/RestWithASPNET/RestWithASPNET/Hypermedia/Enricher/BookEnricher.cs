@@ -14,6 +14,8 @@ namespace RestWithASPNETUdemy.Hypermedia.Enricher
             var path = "api/book/v1";
             string link = GetLink(content.Id, urlHelper, path);
 
+            content.Links ??= new List<HyperMediaLink>();
+
             content.Links.Add(new HyperMediaLink()
             {
                 Action = HttpActionVerb.GET,
@@ -42,7 +44,7 @@ namespace RestWithASPNETUdemy.Hypermedia.Enricher
                 Rel = RelationType.self,
                 Type = "int"
             });
-            return null;
+            return Task.CompletedTask;
         }
 
         private string GetLink(long id, IUrlHelper urlHelper, string path)
