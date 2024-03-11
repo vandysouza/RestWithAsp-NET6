@@ -11,7 +11,7 @@ namespace RestWithASPNET.Business
         List<PersonVO> FindAll();
 
         PagedSearchVO<PersonVO> FindWithPagedSearch(
-            string name, string sortDirection, int pageSize, int Page);
+            string? name, string sortDirection, int pageSize, int Page);
         PersonVO Update(PersonVO person);
         PersonVO Disable(long id);
         void Delete(long id);

@@ -27,10 +27,10 @@ namespace RestWithASPNET.Controllers
         [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(
-            [FromQuery] string name,
             string sortDirection,
             int pageSize,
-            int page)
+            int page,
+            [FromQuery] string? name = null)
         {
             return Ok(_personBusiness.FindWithPagedSearch(name, sortDirection, pageSize, page));
         }
